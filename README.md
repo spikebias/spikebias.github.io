@@ -1,6 +1,6 @@
 # spikebias.github.io
 
-Landing page of the paper *Spike sorting biases and information loss in a detailed cortical model*: code (<https://github.com/spikebias/spikebias>) and data (DANDI dandiset 001250).
+Landing page of the paper *Spike sorting biases and information loss in a detailed cortical model*: code (<https://github.com/spikebias/spikebias-paper>) and data (DANDI dandiset 001250).
 
 A static site with no build step: open `index.html` in a browser, or serve the folder:
 
