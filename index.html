@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spike sorting biases</title>
+  <meta name="description" content="A detailed model of rat cortex simulates extracellular recordings with known spike times: modern spike sorters isolate about 10% of nearby neurons, and their biases nearly halve stimulus information. Code and data.">
+  <meta property="og:title" content="Spike sorting biases and information loss in a detailed cortical model">
+  <meta property="og:description" content="Spike sorters isolate about 10% of nearby neurons, and their biases nearly halve stimulus information. Code and data.">
+  <meta property="og:image" content="static/img/fig1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/landing.css">
+  <script>try { const m = localStorage.getItem("theme"); if (m) document.documentElement.dataset.theme = m; } catch (e) {}</script>
+  <script defer src="static/js/landing.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">spikebias</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#results">Results</a>
+        <a href="#code">Code &amp; data</a>
+        <a href="#cite">Cite</a>
+      </div>
+      <button class="theme" id="theme" aria-label="Switch between light and dark">◐ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================================== HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <div class="badge">Biophysical model · Spike sorting</div>
+      <h1>Spike sorting biases and information loss in a detailed cortical model</h1>
+      <p class="claim">We simulated extracellular recordings from a detailed model of rat somatosensory cortex, where every spike
+        is known. Modern spike sorters isolate <em>about 10% of the neurons</em> near the probe and favour some neuron types.
+        Undersampling alone does not impair stimulus discrimination, but these <em>biases nearly halve it</em>.</p>
+      <div class="authors">
+        <span>Steeve Laquitaine<sup>1</sup></span>
+        <span>Milo Imbeni<sup>2</sup></span>
+        <span>Joseph Tharayil<sup>3</sup></span>
+        <span>James B. Isbister<sup>4</sup></span>
+        <span>Michael W. Reimann<sup>4</sup></span>
+      </div>
+      <div class="affil"><sup>1</sup>Institut de la Vision, INSERM, CNRS, Sorbonne Université &nbsp;·&nbsp; <sup>2</sup>Maastricht University
+        &nbsp;·&nbsp; <sup>3</sup>IT'IS Foundation &nbsp;·&nbsp; <sup>4</sup>Open Brain Institute</div>
+      <div class="buttons">
+        <!-- TODO: add the Paper button once the paper is published -->
+        <a class="btn primary" href="https://github.com/steevelaquitaine/spikebias">Code</a>
+        <a class="btn" href="https://dandiarchive.org/dandiset/001250">Data (DANDI)</a>
+        <a class="btn" href="https://doi.org/10.5281/zenodo.17389967">Zenodo</a>
+        <a class="btn" href="https://pypi.org/project/spikecurate/">pip install spikecurate</a>
+      </div>
+    </div>
+    <div class="hero-demo card">
+      <img src="static/img/fig1.png" alt="Biophysical models and experiments: model neurons, firing patterns, generative model of extracellular recordings, simulated Neuropixels and dense probes, spontaneous and evoked regimes" style="width:100%; border-radius:10px; background:#fff;">
+    </div>
+  </div>
+</header>
+
+<!-- ================================================================== TL;DR -->
+<section class="tldr">
+  <div class="wrap three">
+    <div><h3>A recording with known spikes</h3><p>A biophysical simulation of a cortical column of 30,190 neurons, recorded
+      with a Neuropixels probe and a denser probe, in spontaneous and stimulus-evoked activity. The simulated traces are validated
+      against in vivo recordings.</p></div>
+    <div><h3>Strong undersampling</h3><p>Spike sorters isolate about 10% of the neurons near the electrode shank. Which neurons
+      they isolate depends on firing rate, spike extent, synaptic type and layer.</p></div>
+    <div><h3>Biases cost information</h3><p>Undersampling alone does not impair stimulus discrimination. The sorters' biases
+      reduce it by nearly half.</p></div>
+  </div>
+</section>
+
+<!-- ================================================================== RESULTS -->
+<section id="results" class="section">
+  <div class="wrap">
+    <h2>Results</h2>
+    <div class="rcard">
+      <div class="rtext"><h3>Validated against in vivo recordings</h3>
+        <p>The simulated traces reproduce the components of in vivo recordings (single-unit spikes, multi-unit activity and
+          background noise), their amplitude-to-noise ratio, spectra and spike shapes, compared with Neuropixels and dense-probe
+          recordings in anesthetized rats.</p></div>
+      <img src="static/img/fig2.png" alt="Validation of the simulated traces against in vivo recordings" loading="lazy">
+    </div>
+    <div class="rcard">
+      <div class="rtext"><h3>Spike sorters isolate few neurons</h3>
+        <p>Across sorters, from Kilosort to Kilosort 4 and Herdingspikes, only about 10% of the neurons near the probe are
+          isolated as single-units. Denser probes do not raise this yield.</p></div>
+      <img src="static/img/fig5.png" alt="Single-unit yield, sampling and quality of the sorted units" loading="lazy">
+    </div>
+    <div class="rcard">
+      <div class="rtext"><h3>Sorting accuracy depends on the neuron</h3>
+        <p>Because every spike is known, sorting accuracy can be measured for each neuron and related to properties that
+          experimenters cannot observe. Firing rate, spike extent, synaptic type and layer predict which neurons are sorted well.</p></div>
+      <img src="static/img/fig6.png" alt="Sorting accuracy of ground truth neurons and the features that predict it" loading="lazy">
+    </div>
+    <div class="rcard">
+      <div class="rtext"><h3>Biases nearly halve stimulus information</h3>
+        <p>In responses to simulated whisker deflections in eight directions, the information capacity of the sorted populations
+          is on average 50% lower than that of the ground truth. Threshold crossing without spike sorting loses only 10%.</p></div>
+      <img src="static/img/fig7.png" alt="Neural manifolds and information capacity of ground truth, sorted and threshold-crossing populations" loading="lazy">
+    </div>
+    <details class="more"><summary>More figures</summary>
+      <figure><img src="static/img/fig3.png" alt="Validation of spike spatiotemporal profiles" loading="lazy">
+        <figcaption>Validation of spike spatiotemporal profiles.</figcaption></figure>
+      <figure><img src="static/img/fig4.png" alt="Validation of firing rates" loading="lazy">
+        <figcaption>Firing rates of the sorted single-units, compared with in vivo recordings.</figcaption></figure>
+    </details>
+  </div>
+</section>
+
+<!-- ================================================================== CODE + DATA -->
+<section id="code" class="section alt">
+  <div class="wrap">
+    <h2>Code and data</h2>
+    <p>The notebooks of the repository reproduce every figure. The simulated recordings, ground truth spike trains and sortings,
+      and the in vivo recordings with their sortings, are on the DANDI Archive (dandiset 001250).</p>
+<pre class="code"><code>git clone https://github.com/steevelaquitaine/spikebias
+pip install dandi
+dandi download https://dandiarchive.org/dandiset/001250/draft   # or one file at a time, with the notebooks</code></pre>
+    <p>The curation model of the paper, which selects well-sorted single-units from ten quality metrics, is a Python package:</p>
+<pre class="code"><code>pip install spikecurate</code></pre>
+    <div class="nbcards">
+      <a class="nb" href="https://github.com/steevelaquitaine/spikebias"><b>Code</b><span>Notebooks and pipelines (GitHub)</span></a>
+      <a class="nb" href="https://dandiarchive.org/dandiset/001250"><b>Data</b><span>Recordings, ground truth, sortings (DANDI 001250)</span></a>
+      <a class="nb" href="https://github.com/steevelaquitaine/spikecurate"><b>Curation</b><span>spikecurate package (GitHub, PyPI)</span></a>
+      <a class="nb" href="https://doi.org/10.5281/zenodo.11113043"><b>Circuit</b><span>Cortical column model (Zenodo)</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== ABSTRACT + CITE -->
+<section id="cite" class="section">
+  <div class="wrap">
+    <details class="abstract"><summary>Abstract</summary>
+      <p>Sorting action potentials from extracellular recordings of large groups of connected neurons is essential to understanding
+        brain function. Simulations with known spike times have driven significant advances in spike sorting, but present models do
+        not fully account for the effect of neuronal heterogeneity on sorting accuracy. We used a large-scale detailed cortical
+        microcircuit model to simulate recordings, evaluate modern spike sorters, and link their performance to neuronal
+        heterogeneity. We also exposed the network to various stimuli to investigate how sorting errors affect stimulus
+        discrimination. Here, we show that spike sorters successfully isolate about 10% of neurons near the electrode shank, that
+        this undersampling does not impair stimulus discriminability, but that sorting biases related to firing rate, spike extent,
+        synaptic type, and layer reduce stimulus discriminability by nearly half, which posit realistic models as a complementary
+        approach to evaluate and improve spike sorting and hence, advance our understanding of neural activity.</p>
+    </details>
+    <h2>Citation</h2>
+    <p class="lead">The citation of the paper will be added on publication. Meanwhile, cite the code and the data:</p>
+    <div class="bib">
+      <button class="chip copy" id="copy-bib">Copy</button>
+<pre id="bibtex"><code>@software{laquitaine_spikebias_code,
+  title     = {Spike sorting biases and information loss in a detailed cortical model},
+  author    = {Laquitaine, Steeve and Imbeni, Milo and Tharayil, Joseph and Isbister, James B. and Reimann, Michael W.},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.17389967}
+}
+
+@misc{laquitaine_spikebias_data,
+  title     = {Spike sorting biases and information loss in a detailed cortical model},
+  author    = {Laquitaine, Steeve and Imbeni, Milo and Tharayil, Joseph and Isbister, James B. and Reimann, Michael W.},
+  publisher = {DANDI Archive},
+  howpublished = {\url{https://dandiarchive.org/dandiset/001250}}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">Code released under the GPL-3.0 license.</div>
+</footer>
+
+</body>
+</html>
